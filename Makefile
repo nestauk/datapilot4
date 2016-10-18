@@ -15,11 +15,11 @@ IS_ANACONDA=$(shell python -c "import sys;t=str('anaconda' in sys.version.lower(
 
 ## Install Python Dependencies
 requirements: test_environment
-	pip install -r requirements.txt
+	pip install -q -r requirements.txt
 
 ## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+run_all: requirements
+	$(PYTHON_INTERPRETER) src/run_project.py $(INPUT_FILE) $(OUTPUT_FILE)
 
 ## Delete all compiled Python files
 clean:
